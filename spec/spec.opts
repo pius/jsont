@@ -1,7 +1,5 @@
 --colour
 --format
-specdoc
---loadby
+documentation
 mtime
---reverse
 --backtrace

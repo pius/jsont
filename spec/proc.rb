@@ -1,5 +1,5 @@
 require "rubygems"
-require 'lib/jsont.rb'
+require 'jsont.rb'
 require 'json'
 describe "JsonT with procs" do
   

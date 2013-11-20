@@ -15,7 +15,7 @@ rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 desc "Generate documentation"
 Rake::RDocTask.new do |rd|
   rd.main = "README.rdoc"
@@ -24,11 +24,12 @@ Rake::RDocTask.new do |rd|
 end
 
 require 'rubygems'
-require 'spec'
-require 'spec/rake/spectask'
+require 'rspec'
+# require 'rspec/rake/spectask'
+require "rspec/core/rake_task"
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_opts ||= []
-  t.spec_opts << "--options" << "spec/spec.opts"
-  t.spec_files = FileList['spec/*.rb']
+RSpec::Core::RakeTask.new do |t|
+  t.rspec_opts ||= []
+  t.rspec_opts << "--options" << "spec/spec.opts"
+  t.pattern = 'spec/*.rb'
 end
