@@ -6,11 +6,13 @@ class JsonT
   
   def initialize(rules)
     @rules = rules
+    new_rules = @rules.dup
     @rules.each do |r,v| 
       if r.index('self') != 0
-        rules["self.#{r}"] = rules.delete(r)
+        new_rules["self.#{r}"] = new_rules.delete(r)
       end
     end
+    @rules = new_rules
   end
   
   def transform(target)
@@ -43,8 +45,8 @@ class JsonT
             parent
           end
           path.gsub!(/^\$\.?/,'')
-
           if path.size > 0
+            puts "path is #{path}"
             path.split('.').each do |piece|
               n = case piece
               when /^[0-9]+$/
